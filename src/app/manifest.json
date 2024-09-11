@@ -1,0 +1,29 @@
+{
+	"id": "1",
+	"name": "WeatherNext",
+	"short_name": "WeatherNext",
+	"description": "WeatherNext",
+	"icons": [
+		{
+			"src": "/WNext.png",
+			"sizes": "192x192",
+			"type": "image/png",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "/WNext.png",
+			"sizes": "384x384",
+			"type": "image/png"
+		},
+		{
+			"src": "/WNext.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#FFFFFF",
+	"background_color": "#FFFFFF",
+	"start_url": "/",
+	"display": "standalone",
+	"orientation": "portrait"
+}
