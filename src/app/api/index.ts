@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 export const checkWeather = async (city: string) => {
 	const apiKey = process.env.WEATHER_APP_API_KEY;
 	const apiUrl = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=${city}`;
