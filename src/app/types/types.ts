@@ -50,7 +50,7 @@ export interface WeatherData {
 	main: MainWeatherData;
 	visibility: number;
 	wind: Wind;
-	rain?: Rain; // Опционально, так как дождь может отсутствовать
+	rain?: Rain;
 	clouds: Clouds;
 	dt: number;
 	sys: Sys;
@@ -59,3 +59,10 @@ export interface WeatherData {
 	name: string;
 	cod: number;
 }
+
+export type WeatherContextType = {
+	data: WeatherData | null;
+	place: string;
+	setPlace: React.Dispatch<React.SetStateAction<string>>;
+	isLoading: boolean;
+};

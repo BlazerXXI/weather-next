@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "../app/styles/variables/variables";
 
 :root {
 	--background: #fafafa;
@@ -72,8 +73,27 @@ a {
 	background-color: var(--background-secondary);
 }
 
-header:before {
-	background-color: var(--background-secondary);
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: $header-height;
+	&:before {
+		background-color: var(--background-secondary);
+	}
+}
+
+main {
+	min-height: $main-height;
+	margin-top: $header-height;
+}
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: $main-height;
+	margin-top: $header-height;
 }
 
 .container {

@@ -4,6 +4,8 @@ import React from "react";
 import { useTheme } from "./context/ThemeContext";
 import localFont from "next/font/local";
 import Header from "./components/Header";
+import { useLoading } from "./context/WeatherContext";
+import Loader from "./components/Loader";
 
 const geistSans = localFont({
 	src: "./fonts/GeistVF.woff",
@@ -19,6 +21,7 @@ const geistMono = localFont({
 
 function App({ children }: { children: React.ReactNode }) {
 	const { dark } = useTheme();
+	const { isLoading } = useLoading();
 
 	return (
 		<html lang="en">
@@ -27,10 +30,9 @@ function App({ children }: { children: React.ReactNode }) {
 					dark ? "dark" : "light"
 				} relative container`}
 			>
+				{isLoading && <Loader />}
 				<Header />
-				<main className="flex min-h-[calc(100vh-3.5rem)] flex-col mt-14 pt-3 md:pt-6">
-					{children}
-				</main>
+				<main className="flex flex-col pt-6 md:pt-6 relative">{children}</main>
 			</body>
 		</html>
 	);
