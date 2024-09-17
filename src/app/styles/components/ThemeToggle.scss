@@ -1,0 +1,22 @@
+@use "../variables/variables" as *;
+
+.theme-buttons {
+	$size: 25px;
+	cursor: pointer;
+
+	display: flex;
+	position: relative;
+	height: $size;
+	width: $size;
+	overflow: hidden;
+
+	.light-theme-btn,
+	.dark-theme-btn {
+		position: absolute;
+		top: $size;
+		transition: top 0.5s ease-in-out;
+		&.active {
+			top: 0;
+		}
+	}
+}

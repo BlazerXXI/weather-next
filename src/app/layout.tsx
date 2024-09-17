@@ -1,19 +1,9 @@
+import React from "react";
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import "./globals.scss";
-import Header from "./components/Header";
-
-const geistSans = localFont({
-	src: "./fonts/GeistVF.woff",
-	variable: "--font-geist-sans",
-	weight: "100 900",
-});
-
-const geistMono = localFont({
-	src: "./fonts/GeistMonoVF.woff",
-	variable: "--font-geist-mono",
-	weight: "100 900",
-});
+import { WeatherProvider } from "./context/WeatherContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import App from "./App";
 
 export const metadata: Metadata = {
 	manifest: "/manifest.json",
@@ -31,15 +21,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} relative container`}
-			>
-				<Header />
-				<main className="flex min-h-[calc(100vh-3.5rem)] flex-col mt-14 pt-3 md:pt-6">
-					{children}
-				</main>
-			</body>
-		</html>
+		<ThemeProvider>
+			<WeatherProvider>
+				<App>{children}</App>
+			</WeatherProvider>
+		</ThemeProvider>
 	);
 }
