@@ -13,7 +13,13 @@ const Place = () => {
 		<div className="flex items-center gap-2">
 			<i className="bi bi-geo-alt-fill"></i>
 			<p className="text-sm">
-				<b>{data?.name}</b> {data?.sys.country}
+				{data?.name ? (
+					<>
+						<b>{data.name}</b> {data.sys.country}
+					</>
+				) : (
+					"City"
+				)}
 			</p>
 		</div>
 	);

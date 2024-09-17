@@ -7,30 +7,39 @@ type ThemeContextType = {
 	setDark: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const THEME_KEY = "darkTheme";
-
-const getInitialTheme = (): boolean => {
-	if (typeof window === "undefined") return false;
-	const savedTheme = localStorage.getItem(THEME_KEY);
-	return savedTheme === "true"
-		? true
-		: window.matchMedia("(prefers-color-scheme: dark)").matches;
-};
-
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
 	const [dark, setDark] = useState<boolean>(false);
+	const [isThemeLoaded, setIsThemeLoaded] = useState(false);
+
+	const THEME_KEY = "darkTheme";
+
+	const getInitialTheme = (): boolean => {
+		if (typeof window === "undefined") return false;
+
+		const savedTheme = localStorage.getItem(THEME_KEY);
+
+		if (savedTheme !== null) {
+			return savedTheme === "true";
+		}
+
+		return window.matchMedia("(prefers-color-scheme: dark)").matches;
+	};
 
 	useEffect(() => {
-		setDark(getInitialTheme());
+		const initialTheme = getInitialTheme();
+		setDark(initialTheme);
+		setIsThemeLoaded(true);
 	}, []);
 
 	useEffect(() => {
-		localStorage.setItem(THEME_KEY, dark.toString());
-	}, [dark]);
+		if (isThemeLoaded) {
+			localStorage.setItem(THEME_KEY, dark.toString());
+		}
+	}, [dark, isThemeLoaded]);
 
 	return (
 		<ThemeContext.Provider value={{ dark, setDark }}>
