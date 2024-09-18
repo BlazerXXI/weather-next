@@ -13,4 +13,4 @@ const nextConfig = withPWAInit({
 	},
 });
 
-export default nextConfig({});
+export default nextConfig;
