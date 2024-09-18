@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 import withPWAInit from "@ducanh2912/next-pwa";
 
-const nextConfig = withPWAInit({
+const withPWA = withPWAInit({
 	dest: "public",
 	cacheOnFrontEndNav: true,
 	aggressiveFrontEndNavCaching: true,
@@ -13,4 +13,17 @@ const nextConfig = withPWAInit({
 	},
 });
 
-export default nextConfig;
+const nextConfig = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "openweathermap.org",
+				port: "",
+				pathname: "/img/**",
+			},
+		],
+	},
+};
+
+export default withPWA(nextConfig);

@@ -4,15 +4,13 @@ import WeatherContext from "../context/WeatherContext";
 
 const Search = () => {
 	const weatherContext = useContext(WeatherContext);
-	if (!weatherContext) {
-		return <div>Loading cityes...</div>;
-	}
 	const { data, place, setPlace } = weatherContext;
 
 	const [inputValue, setInputValue] = useState(place);
 
 	const handleSearch = () => {
 		setPlace(inputValue);
+		setInputValue("");
 	};
 
 	const changePlace = (e: React.ChangeEvent<HTMLInputElement>) => {

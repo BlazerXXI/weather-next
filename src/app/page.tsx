@@ -1,9 +1,9 @@
-import MainWeather from "./components/MainWeather";
+import CurrentWeather from "./components/CurrentWeather";
 
 export default function Home() {
 	return (
 		<>
-			<MainWeather />
+			<CurrentWeather />
 		</>
 	);
 }
