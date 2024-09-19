@@ -14,16 +14,16 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig = {
-	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "openweathermap.org",
-				port: "",
-				pathname: "/img/**",
-			},
-		],
-	},
+	// images: {
+	// 	remotePatterns: [
+	// 		{
+	// 			protocol: "https",
+	// 			hostname: "openweathermap.org",
+	// 			port: "",
+	// 			pathname: "/img/**",
+	// 		},
+	// 	],
+	// },
 };
 
 export default withPWA(nextConfig);

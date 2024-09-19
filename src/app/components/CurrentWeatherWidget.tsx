@@ -8,15 +8,14 @@ const CurrentWeatherWidget = () => {
 	const data = weatherContext?.data as WeatherData;
 
 	const {
-		weather: [{ main, description, icon }],
+		weather: [{ main, description, icon: iconNumber }],
 		main: { temp, feels_like },
 	} = data;
-	console.log("data: ", data);
 
 	return (
 		<div className="bg-secondary border border-solid border-primary-color rounded-3xl p-6 max-md:text-center items-center justify-center md:items-start flex flex-col">
 			<div className="w-1/3 max-md:mx-auto">
-				<WeatherIcon icon={icon} description={description} />
+				<WeatherIcon iconNumber={iconNumber} description={description} />
 			</div>
 			<p className="text-3xl">{Math.round(temp)} °C</p>
 			<p>fells like {Math.round(feels_like)} °C</p>

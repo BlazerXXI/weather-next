@@ -2,14 +2,16 @@ import Image from "next/image";
 import React from "react";
 
 interface IWeatherIcon {
-	icon: string;
+	iconNumber: string;
 	description: string;
 }
 
-const WeatherIcon = ({ icon, description }: IWeatherIcon) => {
+const WeatherIcon = ({ iconNumber, description }: IWeatherIcon) => {
 	return (
 		<Image
-			src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
+			className="m-auto"
+			src={`/icons/weather_icons/set04/big/${iconNumber}.png`}
+			// src={`https://openweathermap.org/img/wn/${iconNumber}@4x.png`}
 			alt={description}
 			width={100}
 			height={100}

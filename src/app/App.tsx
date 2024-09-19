@@ -32,7 +32,9 @@ function App({ children }: { children: React.ReactNode }) {
 			>
 				{isLoading && <Loader />}
 				<Header />
-				<main className="flex flex-col pt-6 md:pt-6 relative">{children}</main>
+				<main className="flex flex-col gap-6 pt-6 md:pt-6 relative">
+					{children}
+				</main>
 			</body>
 		</html>
 	);

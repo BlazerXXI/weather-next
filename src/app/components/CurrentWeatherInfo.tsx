@@ -5,7 +5,6 @@ import { WeatherData } from "../types/types";
 const CurrentWeatherInfo = () => {
 	const weatherContext = useContext(WeatherContext);
 	const data = weatherContext?.data as WeatherData;
-	console.log(data);
 	const {
 		main: { humidity, pressure },
 		wind: { speed: windSpeed },
@@ -26,8 +25,8 @@ const CurrentWeatherInfo = () => {
 			id: 1,
 			icon: "moisture",
 			name: "Pressure",
-			value: Math.round(pressure),
-			unit: "hPa",
+			value: (pressure / 1013).toFixed(2),
+			unit: "atm",
 		},
 		{
 			id: 2,
@@ -67,7 +66,7 @@ const CurrentWeatherInfo = () => {
 					key={id}
 				>
 					<div className="widget-container flex flex-col justify-center items-center gap-2">
-						<div className="info flex gap-2 ">
+						<div className="info flex gap-2 items-center">
 							<div className="icon">
 								<i className={`bi bi-${icon}`}></i>
 							</div>

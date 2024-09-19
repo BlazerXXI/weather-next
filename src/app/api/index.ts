@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "108cd6e86818647f4c9d5af62b5fe464";
+const API_KEY = "abed9665e7ac4c13cb085a5db97e3826";
 
 export const checkWeather = async (city: string) => {
 	if (!city) {

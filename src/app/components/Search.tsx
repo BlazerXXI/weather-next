@@ -1,16 +1,19 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import WeatherContext from "../context/WeatherContext";
 
 const Search = () => {
 	const weatherContext = useContext(WeatherContext);
-	const { data, place, setPlace } = weatherContext;
+	const { setPlace } = weatherContext;
 
-	const [inputValue, setInputValue] = useState(place);
+	const [inputValue, setInputValue] = useState("");
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleSearch = () => {
 		setPlace(inputValue);
 		setInputValue("");
+
+		inputRef.current && inputRef.current.blur();
 	};
 
 	const changePlace = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,6 +28,7 @@ const Search = () => {
 				className="bg-secondary border border-solid border-primary-color rounded-3xl overflow-hidden pl-4 flex items-center "
 			>
 				<input
+					ref={inputRef}
 					type="text"
 					onChange={(e) => changePlace(e)}
 					value={inputValue}
