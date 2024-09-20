@@ -9,7 +9,7 @@ interface IWeatherIcon {
 const WeatherIcon = ({ iconNumber, description }: IWeatherIcon) => {
 	return (
 		<Image
-			className="m-auto"
+			className="max-md:mx-auto"
 			src={`/icons/weather_icons/set04/big/${iconNumber}.png`}
 			// src={`https://openweathermap.org/img/wn/${iconNumber}@4x.png`}
 			alt={description}
