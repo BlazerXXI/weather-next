@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { useTheme } from "./context/ThemeContext";
+import { useTheme } from "./context/theme.context";
 import localFont from "next/font/local";
 import Header from "./components/Header";
-import { useLoading } from "./context/WeatherContext";
+import { useWeather } from "./context/weather.context";
 import Loader from "./components/Loader";
 
 const geistSans = localFont({
@@ -21,7 +21,7 @@ const geistMono = localFont({
 
 function App({ children }: { children: React.ReactNode }) {
 	const { dark } = useTheme();
-	const { isLoading } = useLoading();
+	const { loading } = useWeather();
 
 	return (
 		<html lang="en">
@@ -30,11 +30,16 @@ function App({ children }: { children: React.ReactNode }) {
 					dark ? "dark" : "light"
 				} relative container`}
 			>
-				{isLoading && <Loader />}
-				<Header />
-				<main className="flex flex-col gap-6 pt-6 md:pt-6 relative">
-					{children}
-				</main>
+				{loading ? (
+					<Loader />
+				) : (
+					<>
+						<Header />
+						<main className="flex flex-col gap-6 pt-6 md:pt-6 relative">
+							{children}
+						</main>
+					</>
+				)}
 			</body>
 		</html>
 	);

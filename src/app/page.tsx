@@ -1,11 +1,12 @@
+import React from "react";
 import CurrentWeather from "./components/CurrentWeather";
-import DailyForecast from "./components/DailyForecast";
+import HourlyForecast from "./components/HourlyForecast";
 
 export default function Home() {
 	return (
 		<>
 			<CurrentWeather />
-			{/* <DailyForecast /> */}
+			{/* <HourlyForecast /> */}
 		</>
 	);
 }

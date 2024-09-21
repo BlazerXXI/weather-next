@@ -39,6 +39,10 @@ const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 		if (isThemeLoaded) {
 			localStorage.setItem(THEME_KEY, dark.toString());
 		}
+		const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+		if (metaThemeColor) {
+			metaThemeColor.setAttribute("content", dark ? "#000000" : "#FFFFFF");
+		}
 	}, [dark, isThemeLoaded]);
 
 	return (

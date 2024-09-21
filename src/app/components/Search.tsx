@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useRef, useState } from "react";
-import WeatherContext from "../context/WeatherContext";
+import WeatherContext from "../context/weather.context";
 
 const Search = () => {
 	const weatherContext = useContext(WeatherContext);

@@ -43,6 +43,20 @@ export interface Sys {
 	sunset: number;
 }
 
+export interface City {
+	id: number;
+	name: string;
+	coord?: {
+		lat: number;
+		lon: number;
+	};
+	country: string;
+	population: number;
+	timezone: number;
+	sunrise: number;
+	sunset: number;
+}
+
 export interface WeatherData {
 	coord: Coordinates;
 	weather: Weather[];
@@ -60,9 +74,21 @@ export interface WeatherData {
 	cod: number;
 }
 
+export interface ForecastListData extends WeatherData {
+	dt: number;
+	dt_txt: string;
+}
+export interface ForecastData {
+	cod: string;
+	message: number;
+	cnt: number;
+	list: ForecastListData;
+	city: City;
+}
 export type WeatherContextType = {
-	data: WeatherData | null;
+	currentWeather: WeatherData;
+	hourlyForecast: ForecastListData[];
 	place: string;
 	setPlace: React.Dispatch<React.SetStateAction<string>>;
-	isLoading: boolean;
+	loading: boolean;
 };

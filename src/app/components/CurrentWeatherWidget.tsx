@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import WeatherContext from "../context/WeatherContext";
-import { WeatherData } from "../types/types";
+import React from "react";
 import WeatherIcon from "./WeatherIcon";
+import { WeatherData } from "../types/types";
 
-const CurrentWeatherWidget = () => {
-	const weatherContext = useContext(WeatherContext);
-	const data = weatherContext?.data as WeatherData;
-
+const CurrentWeatherWidget = ({
+	currentWeather,
+}: {
+	currentWeather: WeatherData;
+}) => {
 	const {
 		weather: [{ main, description, icon: iconNumber }],
 		main: { temp, feels_like },
-	} = data;
+	} = currentWeather;
 
 	return (
 		<div className="bg-secondary border border-solid border-primary-color rounded-3xl p-6 max-md:text-center items-center justify-center md:items-start flex flex-col">

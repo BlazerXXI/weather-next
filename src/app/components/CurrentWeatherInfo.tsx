@@ -1,17 +1,18 @@
-import React, { useContext } from "react";
-import WeatherContext from "../context/WeatherContext";
+import React from "react";
 import { WeatherData } from "../types/types";
 
-const CurrentWeatherInfo = () => {
-	const weatherContext = useContext(WeatherContext);
-	const data = weatherContext?.data as WeatherData;
+const CurrentWeatherInfo = ({
+	currentWeatherInfo,
+}: {
+	currentWeatherInfo: WeatherData;
+}) => {
 	const {
 		main: { humidity, pressure },
 		wind: { speed: windSpeed },
 		rain: { "1h": rain } = { "1h": 0 },
 		visibility,
 		clouds: { all: clouds },
-	} = data;
+	} = currentWeatherInfo;
 
 	const otherInfoWidgets = [
 		{
@@ -32,8 +33,8 @@ const CurrentWeatherInfo = () => {
 			id: 2,
 			icon: "wind",
 			name: "WindSpeed",
-			value: Math.round(windSpeed),
-			unit: "m/s",
+			value: Math.round(windSpeed * 3.6),
+			unit: "km/h",
 		},
 		{
 			id: 3,

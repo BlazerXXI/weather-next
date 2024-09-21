@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useTheme } from "../context/ThemeContext";
+import { useTheme } from "../context/theme.context";
 import "../styles/components/ThemeToggle.scss";
 
 const ThemeToggle = () => {

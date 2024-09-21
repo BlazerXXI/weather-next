@@ -1,8 +1,8 @@
 import React from "react";
 import type { Metadata, Viewport } from "next";
 import "./globals.scss";
-import { WeatherProvider } from "./context/WeatherContext";
-import { ThemeProvider } from "./context/ThemeContext";
+import { WeatherProvider } from "./context/weather.context";
+import { ThemeProvider } from "./context/theme.context";
 import App from "./App";
 
 export const metadata: Metadata = {
