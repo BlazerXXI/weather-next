@@ -10,10 +10,13 @@ const Search = () => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleSearch = () => {
-		setPlace(inputValue);
-		setInputValue("");
-
-		inputRef.current && inputRef.current.blur();
+		if (inputValue) {
+			setPlace(inputValue);
+			setInputValue("");
+			inputRef.current && inputRef.current.blur();
+		} else {
+			inputRef.current && inputRef.current.focus();
+		}
 	};
 
 	const changePlace = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,6 +35,7 @@ const Search = () => {
 					type="text"
 					onChange={(e) => changePlace(e)}
 					value={inputValue}
+					required
 					placeholder="Search city ..."
 					className="w-full bg-transparent focus:outline-none"
 				/>

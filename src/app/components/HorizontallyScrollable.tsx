@@ -11,27 +11,6 @@ const HorizontallyScrollable = ({
 }) => {
 	const scrollRef = useRef<HTMLDivElement>(null);
 
-	const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-		const oldX = e.touches[0].pageX;
-		const scrollLeft = scrollRef.current?.scrollLeft ?? 0;
-
-		const handleTouchMove = (e: TouchEvent) => {
-			const newX = e.touches[0].pageX;
-			const offset = newX - oldX;
-
-			if (scrollRef.current) {
-				scrollRef.current.scrollLeft = scrollLeft - offset;
-			}
-		};
-
-		const handleTouchEnd = () => {
-			window.removeEventListener("touchmove", handleTouchMove);
-		};
-
-		window.addEventListener("touchmove", handleTouchMove);
-		window.addEventListener("touchend", handleTouchEnd, { once: true });
-	};
-
 	const handleMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 		const oldX = e.pageX;
 		const scrollLeft = scrollRef.current?.scrollLeft ?? 0;
@@ -57,7 +36,6 @@ const HorizontallyScrollable = ({
 		<div
 			ref={scrollRef}
 			onMouseDown={handleMouseDown}
-			onTouchStart={handleTouchStart}
 			className={`${className} overflow-x-auto custom-scroll cursor-grab active:cursor-grabbing pb-6`}
 		>
 			{children}

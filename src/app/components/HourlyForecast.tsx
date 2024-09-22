@@ -9,8 +9,6 @@ const HourlyForecast = ({
 }: {
 	hourlyForecast: ForecastListData[];
 }) => {
-	console.log("hourlyForecast: ", hourlyForecast);
-
 	return (
 		<div className=" flex flex-col gap-6">
 			<h2 className="uppercase">Hourly Forecast</h2>
