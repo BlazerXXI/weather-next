@@ -50,7 +50,7 @@ export const DefaultWeatherData: WeatherData = {
 export const hourlyDate = (hour: string) => {
 	const date = new Date(hour).toLocaleDateString();
 	if (date === new Date().toLocaleDateString()) {
-		return "Now";
+		return "Today";
 	}
 	return date;
 };
