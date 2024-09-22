@@ -46,3 +46,70 @@ export const DefaultWeatherData: WeatherData = {
 	name: "London",
 	cod: 200,
 };
+
+export const hourlyDate = (hour: string) => {
+	const date = new Date(hour).toLocaleDateString();
+	if (date === new Date().toLocaleDateString()) {
+		return "Now";
+	}
+	return date;
+};
+
+export const hourlyTime = (hour: number) => {
+	const time = new Date(hour * 1000).toLocaleTimeString().slice(0, 5);
+	return time;
+};
+
+export const otherInfoWidgets = (
+	humidity: number,
+	pressure: number,
+	windSpeed: number,
+	rain: number,
+	visibility: number,
+	clouds: number
+) => {
+	return [
+		{
+			id: 0,
+			icon: "droplet",
+			name: "Humidity",
+			value: Math.round(humidity),
+			unit: "%",
+		},
+		{
+			id: 1,
+			icon: "moisture",
+			name: "Pressure",
+			value: (pressure / 1013).toFixed(2),
+			unit: "atm",
+		},
+		{
+			id: 2,
+			icon: "wind",
+			name: "WindSpeed",
+			value: Math.round(windSpeed * 3.6),
+			unit: "km/h",
+		},
+		{
+			id: 3,
+			icon: "cloud-rain-fill",
+			name: "Rain",
+			value: rain,
+			unit: "mm",
+		},
+		{
+			id: 4,
+			icon: "eye",
+			name: "Visibility",
+			value: visibility === 10000 ? "> 10" : Math.round(visibility / 1000),
+			unit: "km",
+		},
+		{
+			id: 5,
+			icon: "clouds-fill",
+			name: "Clouds",
+			value: Math.round(clouds),
+			unit: "%",
+		},
+	];
+};

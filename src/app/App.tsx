@@ -28,18 +28,15 @@ function App({ children }: { children: React.ReactNode }) {
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} App-${
 					dark ? "dark" : "light"
-				} relative container`}
+				} relative container ${loading ? "overflow-hidden" : ""}`}
 			>
-				{loading ? (
-					<Loader />
-				) : (
-					<>
-						<Header />
-						<main className="flex flex-col gap-6 pt-6 md:pt-6 relative">
-							{children}
-						</main>
-					</>
-				)}
+				{loading && <Loader />}
+				<>
+					<Header />
+					<main className="flex flex-col gap-8 pt-6 md:pt-6 relative">
+						{children}
+					</main>
+				</>
 			</body>
 		</html>
 	);

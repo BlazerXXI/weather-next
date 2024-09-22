@@ -105,6 +105,19 @@ main {
 	margin: 0 auto;
 }
 
+.custom-scroll {
+	&::-webkit-scrollbar {
+		width: 0.5rem;
+	}
+	&::-webkit-scrollbar-track {
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--border-color);
+		-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+	}
+}
+
 .border-primary-color {
 	border-color: var(--border-color);
 }
