@@ -3,8 +3,8 @@
 import React from "react";
 import CurrentWeather from "./components/CurrentWeather";
 import HourlyForecast from "./components/HourlyForecast";
-import { useWeather } from "./context/weather.context";
 import DailyForecast from "./components/DailyForecast";
+import { useWeather } from "./context/weather.context";
 
 export default function Home() {
 	const { currentWeather, hourlyForecast, dailyForecast } = useWeather();
@@ -12,8 +12,12 @@ export default function Home() {
 	return (
 		<>
 			<CurrentWeather currentWeather={currentWeather} />
-			<HourlyForecast hourlyForecast={hourlyForecast} />
-			<DailyForecast dailyForecast={dailyForecast} />
+			{hourlyForecast.length > 0 && (
+				<HourlyForecast hourlyForecast={hourlyForecast} />
+			)}
+			{dailyForecast.length > 0 && (
+				<DailyForecast dailyForecast={dailyForecast} />
+			)}
 		</>
 	);
 }

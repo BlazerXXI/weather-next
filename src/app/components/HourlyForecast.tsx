@@ -19,7 +19,11 @@ const HourlyForecast = ({
 							className="flex flex-col gap-4 text-center select-none"
 							key={hour.dt}
 						>
-							<p className={`min-h-6 ${hourlyDate(hour.dt_txt) === "Today" && 'font-bold'}`}>
+							<p
+								className={`min-h-6 ${
+									hourlyDate(hour.dt_txt) === "Today" && "font-bold"
+								}`}
+							>
 								{hourlyDate(hour.dt_txt) !==
 									hourlyDate(hourlyForecast[index - 1]?.dt_txt) &&
 									hourlyDate(hour.dt_txt)}

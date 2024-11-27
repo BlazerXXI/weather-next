@@ -9,7 +9,6 @@ const DailyForecast = ({
 }: {
 	dailyForecast: ForecastListData[];
 }) => {
-
 	return (
 		<div className=" flex flex-col gap-6">
 			<h2 className="uppercase">Daily Forecast</h2>
@@ -21,7 +20,11 @@ const DailyForecast = ({
 							key={day.dt_txt}
 						>
 							<div className="text-sm flex flex-col items-center justify-between text-center flex-1 w-40 h-60 gap-2 bg-secondary border border-solid border-primary-color rounded-3xl p-6 ">
-								<p className={`text-xl ${dailyDate(day.dt_txt) === "Today" && "font-bold"}`}>
+								<p
+									className={`text-xl ${
+										dailyDate(day.dt_txt) === "Today" && "font-bold"
+									}`}
+								>
 									{dailyDate(day.dt_txt) !==
 										dailyDate(dailyForecast[index - 1]?.dt_txt) &&
 										dailyDate(day.dt_txt)}

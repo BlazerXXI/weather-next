@@ -46,9 +46,10 @@ function WeatherProvider({ children }: { children: React.ReactNode }) {
 				const df: ForecastData = await getWeatherData("forecast", place);
 
 				if (Array.isArray(df.list)) {
-					setHourlyForecast(df.list);
 					const groupedData = groupForecastByDay(df.list);
 					const dailySummary = calculateDailySummary(groupedData);
+
+					setHourlyForecast(df.list);
 					setDailyForecast(dailySummary);
 				} else {
 					console.error("Forecast data is not an array");
