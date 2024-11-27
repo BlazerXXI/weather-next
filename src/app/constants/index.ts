@@ -1,3 +1,4 @@
+import moment from "moment";
 import { WeatherData } from "../types/types";
 
 export const DefaultWeatherData: WeatherData = {
@@ -51,6 +52,16 @@ export const hourlyDate = (hour: string) => {
 	const date = new Date(hour).toLocaleDateString();
 	if (date === new Date().toLocaleDateString()) {
 		return "Today";
+	}
+	return date;
+};
+
+export const dailyDate = (day: string) => {
+	const date = moment(day).format("DD MMM");
+	if (new Date(day).toLocaleDateString() === new Date().toLocaleDateString()) {
+		return "Today";
+	} else if (moment(day).isBefore(moment().subtract(1, "days"))) {
+		return "Yesterday";
 	}
 	return date;
 };

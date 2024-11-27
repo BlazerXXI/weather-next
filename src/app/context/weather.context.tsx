@@ -9,10 +9,15 @@ import {
 	WeatherData,
 } from "../types/types";
 import { DefaultWeatherData } from "../constants";
+import {
+	calculateDailySummary,
+	groupForecastByDay,
+} from "../utils/forecastUtils";
 
 const WeatherContext = createContext<WeatherContextType>({
 	currentWeather: DefaultWeatherData,
 	hourlyForecast: [],
+	dailyForecast: [],
 	place: DefaultWeatherData.name,
 	setPlace: () => {},
 	loading: true,
@@ -30,6 +35,7 @@ function WeatherProvider({ children }: { children: React.ReactNode }) {
 	const [currentWeather, setCurrentWeather] =
 		useState<WeatherData>(DefaultWeatherData);
 	const [hourlyForecast, setHourlyForecast] = useState<ForecastListData[]>([]);
+	const [dailyForecast, setDailyForecast] = useState<ForecastListData[]>([]);
 
 	useEffect(() => {
 		const _getWeatherData = async () => {
@@ -37,11 +43,13 @@ function WeatherProvider({ children }: { children: React.ReactNode }) {
 			try {
 				const cw: WeatherData = await getWeatherData("weather", place);
 				setCurrentWeather(cw);
-
 				const df: ForecastData = await getWeatherData("forecast", place);
 
 				if (Array.isArray(df.list)) {
 					setHourlyForecast(df.list);
+					const groupedData = groupForecastByDay(df.list);
+					const dailySummary = calculateDailySummary(groupedData);
+					setDailyForecast(dailySummary);
 				} else {
 					console.error("Forecast data is not an array");
 				}
@@ -62,7 +70,14 @@ function WeatherProvider({ children }: { children: React.ReactNode }) {
 
 	return (
 		<WeatherContext.Provider
-			value={{ currentWeather, hourlyForecast, place, setPlace, loading }}
+			value={{
+				currentWeather,
+				hourlyForecast,
+				dailyForecast,
+				place,
+				setPlace,
+				loading,
+			}}
 		>
 			{children}
 		</WeatherContext.Provider>

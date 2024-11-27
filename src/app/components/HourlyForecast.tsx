@@ -19,7 +19,7 @@ const HourlyForecast = ({
 							className="flex flex-col gap-4 text-center select-none"
 							key={hour.dt}
 						>
-							<p className="min-h-6">
+							<p className={`min-h-6 ${hourlyDate(hour.dt_txt) === "Today" && 'font-bold'}`}>
 								{hourlyDate(hour.dt_txt) !==
 									hourlyDate(hourlyForecast[index - 1]?.dt_txt) &&
 									hourlyDate(hour.dt_txt)}
@@ -33,11 +33,11 @@ const HourlyForecast = ({
 								<p className="text-xl">{Math.round(hour.main.temp)} °C</p>
 								<p className="flex items-center gap-2">
 									{Math.round(hour.wind.speed * 3.6)} km/h{" "}
-									<div
+									<span
 										style={{ transform: `rotate(${-45 + hour.wind.deg}deg)` }}
 									>
 										<i className={`bi bi-send-fill`}></i>
-									</div>
+									</span>
 								</p>
 							</div>
 						</li>

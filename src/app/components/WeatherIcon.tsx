@@ -14,6 +14,7 @@ const WeatherIcon = ({ iconNumber, description }: IWeatherIcon) => {
 			alt={description}
 			width={100}
 			height={100}
+			loading="lazy"
 		/>
 	);
 };

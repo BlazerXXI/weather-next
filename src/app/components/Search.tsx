@@ -35,7 +35,6 @@ const Search = () => {
 					type="text"
 					onChange={(e) => changePlace(e)}
 					value={inputValue}
-					required
 					placeholder="Search city ..."
 					className="w-full bg-transparent focus:outline-none"
 				/>

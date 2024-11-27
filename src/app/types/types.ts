@@ -88,6 +88,7 @@ export interface ForecastData {
 export type WeatherContextType = {
 	currentWeather: WeatherData;
 	hourlyForecast: ForecastListData[];
+	dailyForecast: ForecastListData[];
 	place: string;
 	setPlace: React.Dispatch<React.SetStateAction<string>>;
 	loading: boolean;
