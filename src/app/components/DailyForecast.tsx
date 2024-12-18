@@ -35,7 +35,7 @@ const DailyForecast = ({
 								/>
 								<p className="text-xl">{Math.round(day.main.temp)} °C</p>
 								<p className="flex items-center gap-2">
-									{Math.round(day.wind.speed * 3.6)} km/h{" "}
+									{day.wind.speed} km/h{" "}
 									<span
 										style={{ transform: `rotate(${-45 + day.wind.deg}deg)` }}
 									>
