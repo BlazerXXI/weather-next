@@ -13,6 +13,7 @@ import {
 	calculateDailySummary,
 	groupForecastByDay,
 } from "../utils/forecastUtils";
+import useWeatherPlace from "../utils/hooks/useWeatherPlace";
 
 const WeatherContext = createContext<WeatherContextType>({
 	currentWeather: DefaultWeatherData,
@@ -24,13 +25,7 @@ const WeatherContext = createContext<WeatherContextType>({
 });
 
 function WeatherProvider({ children }: { children: React.ReactNode }) {
-	const [place, setPlace] = useState<string>(() => {
-		if (typeof window !== "undefined") {
-			return localStorage.getItem("place") || DefaultWeatherData.name;
-		} else {
-			return DefaultWeatherData.name;
-		}
-	});
+	const { place, setPlace } = useWeatherPlace();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [currentWeather, setCurrentWeather] =
 		useState<WeatherData>(DefaultWeatherData);
@@ -61,12 +56,6 @@ function WeatherProvider({ children }: { children: React.ReactNode }) {
 			}
 		};
 		_getWeatherData();
-	}, [place]);
-
-	useEffect(() => {
-		if (place) {
-			localStorage.setItem("place", place);
-		}
 	}, [place]);
 
 	return (

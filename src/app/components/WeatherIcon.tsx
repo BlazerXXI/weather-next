@@ -10,10 +10,10 @@ const WeatherIcon = ({ iconNumber, description }: IWeatherIcon) => {
 	return (
 		<Image
 			className="max-md:mx-auto pointer-events-none"
-			src={`/icons/weather_icons/set04/big/${iconNumber}.png`}
+			src={`/icons/weather_icons/set02/big/${iconNumber}.png`}
 			alt={description}
-			width={100}
-			height={100}
+			width={50}
+			height={50}
 			loading="lazy"
 		/>
 	);

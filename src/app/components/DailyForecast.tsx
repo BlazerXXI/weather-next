@@ -10,7 +10,7 @@ const DailyForecast = ({
 	dailyForecast: ForecastListData[];
 }) => {
 	return (
-		<div className=" flex flex-col gap-6">
+		<div className="flex flex-col gap-6 daily-forecast">
 			<h2 className="uppercase">Daily Forecast</h2>
 			<ul>
 				<HorizontallyScrollable className="flex gap-6">

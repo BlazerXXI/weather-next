@@ -16,25 +16,28 @@ export const groupForecastByDay = (
 export const calculateDailySummary = (
 	groupedData: Record<string, ForecastListData[]>
 ) => {
+	const currentDate = new Date().toISOString().split("T")[0];
 	return Object.entries(groupedData).map(([date, entries]) => {
-		const avgTemp =
-			entries.reduce((sum, entry) => sum + entry.main.temp, 0) / entries.length;
-		const weather = entries[0].weather[0];
-		const windSpeed =
-			entries.reduce((sum, entry) => sum + entry.wind.speed, 0) /
-			entries.length;
+		let entriesToUse = entries[3] ?? entries[0];
+		if (new Date(entries[0].dt_txt).toISOString().split("T")[0] === currentDate) {
+			entriesToUse = entries[0];
+		}
+		console.log('entriesToUse: ', entriesToUse);
+		const avgTemp = Math.round(entriesToUse.main.temp);
+		const weather = entriesToUse.weather[0];
+		const windSpeed = entriesToUse.wind.speed;
 		return {
-			...entries[0],
+			...entriesToUse,
 			dt: 0,
 			dt_txt: date,
 			main: {
-				...entries[0].main,
-				temp: Math.round(avgTemp),
+				...entriesToUse.main,
+				temp: avgTemp,
 			},
 			weather: [{ ...weather }],
 			wind: {
-				...entries[0].wind,
-				speed: Math.round(windSpeed * 3.6),
+				...entriesToUse.wind,
+				speed: Math.round(windSpeed),
 			},
 		};
 	});
